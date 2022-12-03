@@ -1,5 +1,5 @@
 import path from "path";
-import { release, type, version } from "os";
+import { release, version } from "os";
 import { createServer as createServerHttp } from "http";
 import "./files/c.js";
 import { getFileDir } from "../util/dirAndFileName.js";
@@ -10,7 +10,6 @@ const jsonFileToImport = random > 0.5 ? "./files/a.json" : "./files/b.json";
 const unknownObject = await import(jsonFileToImport, {
   assert: { type: "json" },
 });
-console.log(unknownObject.default);
 
 console.log(`Release ${release()}`);
 console.log(`Version ${version()}`);
