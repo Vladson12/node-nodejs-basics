@@ -3,7 +3,6 @@ import { release, type, version } from "os";
 import { createServer as createServerHttp } from "http";
 import "./files/c.js";
 import { getFileDir } from "../util/dirAndFileName.js";
-import { assert } from "console";
 
 const random = Math.random();
 
@@ -11,7 +10,7 @@ const jsonFileToImport = random > 0.5 ? "./files/a.json" : "./files/b.json";
 const unknownObject = await import(jsonFileToImport, {
   assert: { type: "json" },
 });
-console.log(unknownObject.default); // 42
+console.log(unknownObject.default);
 
 console.log(`Release ${release()}`);
 console.log(`Version ${version()}`);
