@@ -11,7 +11,11 @@ const read = async () => {
 
   const readStream = fs.createReadStream(fileToRead);
 
-  pipeline(readStream, process.stdout);
+  try {
+    await pipeline(readStream, process.stdout);
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
 };
 
 await read();

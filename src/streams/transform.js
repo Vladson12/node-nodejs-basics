@@ -1,4 +1,5 @@
-import { Transform, pipeline } from "stream";
+import { Transform } from "stream";
+import { pipeline } from "stream/promises";
 
 const transformStream = new Transform({
   transform(chunk, _, cb) {
@@ -12,9 +13,11 @@ const transformStream = new Transform({
 
 const transform = async () => {
   // Write your code here
-  pipeline(process.stdin, transformStream, process.stdout, (err) => {
-    console.log(err);
-  });
+  try {
+    await pipeline(process.stdin, transformStream, process.stdout);
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
 };
 
 await transform();

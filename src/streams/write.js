@@ -11,7 +11,11 @@ const write = async () => {
 
   const writeStream = fs.createWriteStream(fileToWrite);
 
-  pipeline(process.stdin, writeStream);
+  try {
+    await pipeline(process.stdin, writeStream);
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
 };
 
 await write();
