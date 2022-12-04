@@ -1,5 +1,6 @@
 import { Transform } from "stream";
 import { pipeline } from "stream/promises";
+import { EOL } from "os";
 
 const transformStream = new Transform({
   transform(chunk, _, cb) {
@@ -7,7 +8,7 @@ const transformStream = new Transform({
 
     const chunkReversed = chunkString.split("").reverse().join("");
 
-    cb(null, chunkReversed + "\n");
+    cb(null, chunkReversed + EOL);
   },
 });
 
